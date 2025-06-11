@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Animate.css CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Custom CSS -->
-    <link href="assets/css/templatemo-villa-agency.css" rel="stylesheet">
     
     <!-- Custom Styles -->
     <style>
@@ -176,6 +174,32 @@
             background: var(--light-color);
         }
 
+        /* Two-column layout adjustments */
+        .two-column-section {
+            display: flex;
+            align-items: stretch;
+            min-height: 500px;
+        }
+
+        .two-column-section .image-column {
+            display: flex;
+            align-items: center;
+        }
+
+        .two-column-section .image-column img {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .two-column-section .content-column {
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+        }
+
         .feature-card {
             background: white;
             border-radius: 15px;
@@ -231,6 +255,32 @@
             background: white;
         }
 
+        /* Canoe section two-column layout */
+        .canoe-two-column {
+            display: flex;
+            align-items: stretch;
+            min-height: 500px;
+        }
+
+        .canoe-two-column .image-column {
+            display: flex;
+            align-items: center;
+        }
+
+        .canoe-two-column .image-column img {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .canoe-two-column .content-column {
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+        }
+
         .canoe-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -269,49 +319,149 @@
         }
 
         .footer {
-            background: var(--dark-color);
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
             color: white;
-            padding: 40px 0 20px;
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .footer-main {
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .footer-brand p {
+            color: #BDC3C7;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-bottom: 30px;
+            margin-top: 30px;
         }
 
         .footer-section h5 {
-            color: var(--accent-color);
-            margin-bottom: 20px;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-section h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 1px;
         }
 
         .footer-section p, .footer-section a {
             color: #BDC3C7;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .footer-section a:hover {
             color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-section i {
+            width: 20px;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            text-align: center;
-            line-height: 40px;
             border-radius: 50%;
-            margin-right: 10px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-links a:hover {
             background: var(--accent-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            color: #95A5A6;
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .footer-bottom .heart {
+            color: #E74C3C;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .scroll-to-top {
@@ -353,6 +503,31 @@
             
             .section-padding {
                 padding: 60px 0;
+            }
+
+            /* Mobile adjustments for two-column sections */
+            .two-column-section,
+            .canoe-two-column {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .two-column-section .image-column,
+            .canoe-two-column .image-column {
+                order: 2;
+                margin-top: 30px;
+            }
+
+            .two-column-section .content-column,
+            .canoe-two-column .content-column {
+                order: 1;
+                min-height: 300px;
+            }
+
+            .two-column-section .image-column img,
+            .canoe-two-column .image-column img {
+                min-height: 250px;
+                max-height: 300px;
             }
         }
 
@@ -437,9 +612,9 @@
                 
                 <!-- Slide 3: Resort & Villa Sekorp Village -->
                 <div class="carousel-item">
-                    <img src="assets/images/BLBK 3.jpg" class="d-block w-100" alt="Resort & Villa Sekorp Village">
+                    <img src="assets/images/BLBK 3.jpg" class="d-block w-100" alt="Resort & Villa Sekuro Village">
                     <div class="carousel-caption d-none d-md-block">
-                        <h1 class="animate__animated animate__fadeInUp">Resort & Villa Sekorp Village</h1>
+                        <h1 class="animate__animated animate__fadeInUp">Resort & Villa Sekuro Village</h1>
                         <p class="animate__animated animate__fadeInUp animate__delay-1s">Akomodasi mewah dengan fasilitas lengkap untuk liburan yang tak terlupakan</p>
                         <a href="#location" class="btn btn-primary btn-lg animate__animated animate__fadeInUp animate__delay-2s">
                             <i class="fas fa-map-marker-alt"></i> Lihat Lokasi
@@ -469,11 +644,11 @@
                 </div>
             </div>
             
-            <div class="row mb-5">
-                <div class="col-lg-6 fade-in">
-                    <img src="assets/images/Blebak-1.jpg" class="img-fluid rounded-3 shadow" alt="Pantai Blebak">
+            <div class="row mb-5 two-column-section">
+                <div class="col-lg-6 fade-in image-column">
+                    <img src="assets/images/Blebak-1.jpg" class="img-fluid shadow" alt="Pantai Blebak">
                 </div>
-                <div class="col-lg-6 fade-in">
+                <div class="col-lg-6 fade-in content-column">
                     <div class="ps-lg-4">
                         <h3 class="mb-4">Pesona Alam yang Memukau</h3>
                         <p class="mb-4">
@@ -558,7 +733,7 @@
                 <div class="col-lg-10 fade-in">
                     <div class="video-container">
                         <iframe 
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" 
+                            src="https://www.youtube.com/embed/etP5N7NiH2E?rel=0&modestbranding=1" 
                             title="Keindahan Pantai Blebak" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -583,8 +758,8 @@
                 </div>
             </div>
             
-            <div class="row mb-5">
-                <div class="col-lg-6 fade-in">
+            <div class="row mb-5 canoe-two-column">
+                <div class="col-lg-6 fade-in content-column">
                     <div class="pe-lg-4">
                         <h3 class="mb-4">Pengalaman Kano yang Tak Terlupakan</h3>
                         <p class="mb-4">
@@ -623,8 +798,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 fade-in">
-                    <img src="assets/images/BLBK 5.jpg" class="img-fluid rounded-3 shadow" alt="Wisata Kano">
+                <div class="col-lg-6 fade-in image-column">
+                    <img src="assets/images/BLBK 5.jpg" class="img-fluid shadow" alt="Wisata Kano">
                 </div>
             </div>
             
@@ -717,47 +892,48 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h5><i class="fas fa-water me-2"></i>Pantai Blebak</h5>
-                    <p>Destinasi wisata alam yang menawan dengan keindahan pantai yang masih alami dan terjaga kelestariannya.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+            <div class="footer-main">
+                <!-- Footer Brand -->
+                <div class="footer-brand">
+                    <h3><i class="fas fa-water"></i> Pantai Blebak</h3>
+                    <p>Destinasi wisata alam yang menawan dengan keindahan pantai yang masih alami dan terjaga kelestariannya. Nikmati pengalaman liburan yang tak terlupakan di surga tersembunyi Indonesia.</p>
+                </div>
+
+                <!-- Footer Content -->
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h5><i class="fas fa-map-marker-alt me-2"></i>Lokasi & Kontak</h5>
+                        <p><i class="fas fa-map-marker-alt"></i>Pantai Blebak, Indonesia</p>
+                        <p><i class="fas fa-phone"></i>+62 123 456 789</p>
+                        <p><i class="fas fa-envelope"></i>info@pantaiblebak.com</p>
+                        <p><i class="fas fa-clock"></i>Buka Setiap Hari: 06:00 - 18:00 WIB</p>
                     </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h5>Kontak</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>Pantai Blebak, Indonesia</p>
-                    <p><i class="fas fa-phone me-2"></i>+62 123 456 789</p>
-                    <p><i class="fas fa-envelope me-2"></i>info@pantaiblebak.com</p>
-                    <p><i class="fas fa-clock me-2"></i>Buka Setiap Hari: 06:00 - 18:00 WIB</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h5>Quick Links</h5>
-                    <p><a href="#home">Beranda</a></p>
-                    <p><a href="#about">Tentang</a></p>
-                    <p><a href="#video">Video</a></p>
-                    <p><a href="#canoe">Wisata Kano</a></p>
-                    <p><a href="#location">Lokasi</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h5>Aktivitas</h5>
-                    <p>🛶 Wisata Kano</p>
-                    <p>🌅 Menikmati Sunset</p>
-                    <p>🏊‍♂️ Berenang</p>
-                    <p>📸 Fotografi</p>
-                    <p>🐠 Snorkeling</p>
+                    
+                    <div class="footer-section">
+                        <h5><i class="fas fa-anchor me-2"></i>Aktivitas Wisata</h5>
+                        <a href="#canoe"><i class="fas fa-ship"></i>Wisata Kano</a>
+                        <a href="#video"><i class="fas fa-sun"></i>Menikmati Sunset</a>
+                        <a href="#about"><i class="fas fa-swimmer"></i>Berenang & Snorkeling</a>
+                        <a href="#about"><i class="fas fa-camera"></i>Fotografi Alam</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h5><i class="fas fa-share-alt me-2"></i>Ikuti Kami</h5>
+                        <p>Dapatkan update terbaru tentang Pantai Blebak dan promosi menarik melalui media sosial kami.</p>
+                        <div class="social-links">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="text-center pt-4 border-top border-secondary">
-                <p>&copy; 2025 Pantai Blebak. Semua hak cipta dilindungi. Dibuat dengan ❤️ untuk mempromosikan wisata alam Indonesia.</p>
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pantai Blebak. Semua hak cipta dilindungi. Dibuat dengan <span class="heart">❤️</span> untuk mempromosikan wisata alam Indonesia.</p>
             </div>
         </div>
     </footer>
