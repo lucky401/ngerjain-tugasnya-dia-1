@@ -384,7 +384,7 @@
 
         .canoe-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-top: 40px;
         }
@@ -839,6 +839,26 @@
             .canoe-two-column .image-column img {
                 min-height: 200px;
                 max-height: 250px;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (max-width: 992px) and (min-width: 769px) {
+            .canoe-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
+            }
+
+            .canoe-item {
+                padding: 18px;
+            }
+
+            .canoe-item h6 {
+                font-size: 1rem;
+            }
+
+            .canoe-item p {
+                font-size: 0.9rem;
             }
         }
 
