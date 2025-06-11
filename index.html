@@ -12,6 +12,9 @@
     <!-- Animate.css CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <!-- Custom Styles -->
     <style>
         :root {
@@ -318,6 +321,59 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
+        /* Leaflet Map Specific Styling */
+        #leaflet-map {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .leaflet-popup-content {
+            margin: 8px 12px;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+
+        .leaflet-popup-content b {
+            color: var(--primary-color);
+        }
+
+        .leaflet-control-zoom {
+            border: none !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+        }
+
+        .leaflet-control-zoom a {
+            border: none !important;
+            border-radius: 4px !important;
+            color: var(--dark-color) !important;
+            background: white !important;
+        }
+
+        .leaflet-control-zoom a:hover {
+            background: var(--light-color) !important;
+            color: var(--primary-color) !important;
+        }
+
+        .custom-div-icon {
+            background: white !important;
+            border: 2px solid #fff !important;
+            border-radius: 50% !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+            text-align: center !important;
+            line-height: 16px !important;
+            font-size: 12px !important;
+        }
+
+        .custom-div-icon i {
+            margin-top: 2px;
+        }
+
         .footer {
             background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
             color: white;
@@ -591,7 +647,7 @@
                     <img src="assets/images/Sunset_Blebak.jpg" class="d-block w-100" alt="Wisata Alam Kano dan Sunset">
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="animate__animated animate__fadeInUp">Wisata Alam Kano & Sunset</h1>
-                        <p class="animate__animated animate__fadeInUp animate__delay-1s">Nikmati keindahan sunset dengan aktivitas kano yang menantang di Pantai Blebak</p>
+                        <p class="animate__animated animate__fadeInUp animate__delay-1s">Nikmati keindahan sunset dengan aktivitas kano di Pantai Blebak, Desa Sekuro, Mlonggo, Jepara</p>
                         <a href="#canoe" class="btn btn-primary btn-lg animate__animated animate__fadeInUp animate__delay-2s">
                             <i class="fas fa-anchor"></i> Jelajahi Wisata Kano
                         </a>
@@ -679,7 +735,11 @@
                                 </div>
                                 <div class="d-flex align-items-center mb-3">
                                     <i class="fas fa-check-circle text-success me-3"></i>
-                                    <span>Wisata Kano</span>
+                                    <span>Berenang & Kano</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-check-circle text-success me-3"></i>
+                                    <span>Camping Ground</span>
                                 </div>
                             </div>
                         </div>
@@ -710,10 +770,10 @@
                 <div class="col-lg-4 mb-4 fade-in">
                     <div class="feature-card text-center">
                         <div class="feature-icon">
-                            <i class="fas fa-leaf"></i>
+                            <i class="fas fa-campground"></i>
                         </div>
-                        <h5>Alam Terjaga</h5>
-                        <p>Lingkungan yang masih alami dan terjaga kelestariannya memberikan suasana damai dan menenangkan.</p>
+                        <h5>Camping Ground</h5>
+                        <p>Fasilitas camping ground tersedia untuk pengalaman menginap di alam terbuka dengan pemandangan pantai yang indah.</p>
                     </div>
                 </div>
             </div>
@@ -796,6 +856,22 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="mt-4 p-3 bg-light rounded">
+                            <h6 class="text-primary mb-3"><i class="fas fa-info-circle me-2"></i>Informasi Kano:</h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <small><strong>Biaya Sewa:</strong> Rp 50.000/Kano</small><br>
+                                    <small><strong>Muatan:</strong> Maksimal 2 orang</small><br>
+                                    <small><strong>Panjang:</strong> 2 meter</small>
+                                </div>
+                                <div class="col-6">
+                                    <small><strong>Waktu:</strong> 08:00-17:00 WIB</small><br>
+                                    <small><strong>Batas Usia:</strong> > 50 tahun</small><br>
+                                    <small><strong>Durasi:</strong> Sesuai kesepakatan</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 fade-in image-column">
@@ -807,23 +883,33 @@
             <div class="canoe-grid fade-in">
                 <div class="canoe-item">
                     <i class="fas fa-ship"></i>
-                    <h6>Kano Sunrise</h6>
-                    <p>Nikmati keindahan matahari terbit sambil berkano di pagi hari</p>
+                    <h6>Sewa Kano</h6>
+                    <p>Nikmati pengalaman berkano dengan tarif Rp 50.000/kano untuk maksimal 2 orang</p>
                 </div>
                 <div class="canoe-item">
                     <i class="fas fa-compass"></i>
                     <h6>Eksplorasi Pantai</h6>
-                    <p>Jelajahi berbagai sudut pantai yang tersembunyi</p>
+                    <p>Jelajahi berbagai sudut pantai yang tersembunyi dengan pemandangan menakjubkan</p>
                 </div>
                 <div class="canoe-item">
-                    <i class="fas fa-users"></i>
-                    <h6>Kano Grup</h6>
-                    <p>Aktivitas kano bersama keluarga atau teman-teman</p>
+                    <i class="fas fa-life-ring"></i>
+                    <h6>Sewa Pelampung</h6>
+                    <p>Fasilitas pelampung tersedia untuk keamanan dan kenyamanan berenang</p>
                 </div>
                 <div class="canoe-item">
-                    <i class="fas fa-camera"></i>
-                    <h6>Foto Underwater</h6>
-                    <p>Dokumentasi bawah air dengan peralatan khusus</p>
+                    <i class="fas fa-utensils"></i>
+                    <h6>Cafe & Resto</h6>
+                    <p>Nikmati kuliner lokal di Cafe & Resto serta Kampoeng Sekuro</p>
+                </div>
+                <div class="canoe-item">
+                    <i class="fas fa-restroom"></i>
+                    <h6>Fasilitas Lengkap</h6>
+                    <p>Toilet, tempat bilas, dan gazebo tersedia untuk kenyamanan wisatawan</p>
+                </div>
+                <div class="canoe-item">
+                    <i class="fas fa-parking"></i>
+                    <h6>Area Parkir</h6>
+                    <p>Area parkir yang luas dan aman untuk kendaraan pribadi dan motor</p>
                 </div>
             </div>
         </div>
@@ -842,15 +928,7 @@
             <div class="row">
                 <div class="col-lg-8 mb-4 fade-in">
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126214.4297597993!2d115.0877616!3d-8.4095178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd22f7520a7b99f%3A0x5030bfbcaf56b40!2sBali%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1234567890123" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <div id="leaflet-map"></div>
                     </div>
                 </div>
                 <div class="col-lg-4 fade-in">
@@ -872,10 +950,22 @@
                         </div>
                         
                         <div class="mb-4">
-                            <h6><i class="fas fa-tag text-primary me-2"></i>Harga Tiket:</h6>
-                            <p class="mb-2">👨‍💼 Dewasa: Rp 15.000</p>
-                            <p class="mb-2">👶 Anak-anak: Rp 10.000</p>
-                            <p class="mb-2">🛶 Sewa kano: Rp 50.000/jam</p>
+                            <h6><i class="fas fa-tag text-primary me-2"></i>Tarif Wisata:</h6>
+                            <p class="mb-2">🛶 Sewa Kano: Rp 50.000/Kano</p>
+                            <p class="mb-2">👥 Muatan: Maksimal 2 orang</p>
+                            <p class="mb-2">📏 Panjang kano: 2 meter</p>
+                            <p class="mb-2">⏰ Waktu sewa: 08:00-17:00 WIB</p>
+                            <p class="mb-2">🔞 Batas usia: > 50 tahun</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6><i class="fas fa-map text-primary me-2"></i>Legenda Peta:</h6>
+                            <div style="font-size: 12px;">
+                                <p class="mb-1"><i class="fas fa-ship" style="color: #20B2AA;"></i> Aktivitas Wisata</p>
+                                <p class="mb-1"><i class="fas fa-hotel" style="color: #FF6B35;"></i> Akomodasi</p>
+                                <p class="mb-1"><i class="fas fa-utensils" style="color: #28a745;"></i> Kuliner</p>
+                                <p class="mb-1"><i class="fas fa-info-circle" style="color: #6c757d;"></i> Fasilitas Umum</p>
+                            </div>
                         </div>
                         
                         <div class="text-center">
@@ -903,17 +993,18 @@
                 <div class="footer-content">
                     <div class="footer-section">
                         <h5><i class="fas fa-map-marker-alt me-2"></i>Lokasi & Kontak</h5>
-                        <p><i class="fas fa-map-marker-alt"></i>Pantai Blebak, Indonesia</p>
-                        <p><i class="fas fa-phone"></i>+62 123 456 789</p>
-                        <p><i class="fas fa-envelope"></i>info@pantaiblebak.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i>Desa Sekuro, Kecamatan Mlonggo, Kabupaten Jepara</p>
+                        <p><i class="fas fa-envelope"></i>dpmptsp@jepara.co.id</p>
+                        <p><i class="fas fa-map"></i>Mlonggo, Jepara</p>
                         <p><i class="fas fa-clock"></i>Buka Setiap Hari: 06:00 - 18:00 WIB</p>
                     </div>
                     
                     <div class="footer-section">
                         <h5><i class="fas fa-anchor me-2"></i>Aktivitas Wisata</h5>
-                        <a href="#canoe"><i class="fas fa-ship"></i>Wisata Kano</a>
+                        <a href="#canoe"><i class="fas fa-ship"></i>Kano (Rp50.000/Kano)</a>
+                        <a href="#swimming"><i class="fas fa-swimmer"></i>Berenang</a>
+                        <a href="#camping"><i class="fas fa-campground"></i>Camping Ground</a>
                         <a href="#video"><i class="fas fa-sun"></i>Menikmati Sunset</a>
-                        <a href="#about"><i class="fas fa-swimmer"></i>Berenang & Snorkeling</a>
                         <a href="#about"><i class="fas fa-camera"></i>Fotografi Alam</a>
                     </div>
                     
@@ -921,9 +1012,9 @@
                         <h5><i class="fas fa-share-alt me-2"></i>Ikuti Kami</h5>
                         <p>Dapatkan update terbaru tentang Pantai Blebak dan promosi menarik melalui media sosial kami.</p>
                         <div class="social-links">
-                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/jepara.go.id/?locale=id_ID" title="Facebook Jepara" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://instagram.com/infoseputarjepara" title="Instagram Jepara" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/@jeparakabgoid" title="Twitter Jepara" target="_blank"><i class="fab fa-twitter"></i></a>
                             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                             <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                         </div>
@@ -945,6 +1036,9 @@
 
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Custom JavaScript -->
     <script>
@@ -1059,7 +1153,171 @@
             setTimeout(() => {
                 document.body.classList.add('loaded');
             }, 100);
+            
+            // Initialize Leaflet Map
+            initializeLeafletMap();
         });
+
+        // Leaflet Map Initialization
+        function initializeLeafletMap() {
+            // Check if map container exists
+            const mapContainer = document.getElementById('leaflet-map');
+            if (!mapContainer) return;
+
+            // Initialize map with Pantai Blebak coordinates
+            const map = L.map('leaflet-map').setView([-6.5034, 110.6718], 16);
+
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Add marker for Pantai Blebak
+            const marker = L.marker([-6.5034, 110.6718]).addTo(map);
+            marker.bindPopup('<b>Pantai Blebak</b><br>Desa Sekuro, Kecamatan Mlonggo, Kabupaten Jepara').openPopup();
+
+            // GeoJSON data for land usage
+            const geojsonData = {
+                "type": "FeatureCollection",
+                "name": "Penggunaan Lahan",
+                "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                "features": [
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "OBJECTID": 1,
+                            "Name": "Perdagangan dan Jasa",
+                            "Shape_Leng": 0.010384382,
+                            "Shape_Area": 5.9069e-07
+                        },
+                        "geometry": {
+                            "type": "MultiPolygon",
+                            "coordinates": [
+                                [
+                                    [
+                                        [110.672189766244799, -6.503388857209927, 0.0],
+                                        [110.67214310851773, -6.503463684401481, 0.0],
+                                        [110.672110273370492, -6.503541109734385, 0.0],
+                                        [110.672062258566427, -6.503644358200518, 0.0],
+                                        [110.672060133468449, -6.503646703632398, 0.0],
+                                        [110.671891203016685, -6.503659162840052, 0.0],
+                                        [110.671812238044424, -6.503652400837609, 0.0],
+                                        [110.671752566228008, -6.503652399938233, 0.0],
+                                        [110.672189766244799, -6.503388857209927, 0.0]
+                                    ]
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "OBJECTID": 2,
+                            "Name": "Resort & Villa",
+                            "Shape_Leng": 0.00770163098,
+                            "Shape_Area": 2.54535e-06
+                        },
+                        "geometry": {
+                            "type": "MultiPolygon",
+                            "coordinates": [
+                                [
+                                    [
+                                        [110.673430997042942, -6.502471611675503, 0.0],
+                                        [110.673399608904901, -6.502436965293668, 0.0],
+                                        [110.673405023722921, -6.502430217680342, 0.0],
+                                        [110.673408046344321, -6.502403173267794, 0.0],
+                                        [110.673410276662992, -6.502369230155807, 0.0],
+                                        [110.673430997042942, -6.502471611675503, 0.0]
+                                    ]
+                                ]
+                            ]
+                        }
+                    }
+                ]
+            };
+
+            // Add GeoJSON layer with styling
+            const geojsonLayer = L.geoJSON(geojsonData, {
+                style: function(feature) {
+                    return {
+                        color: feature.properties.Name === "Resort & Villa" ? "#FF6B35" : "#20B2AA",
+                        weight: 2,
+                        fillOpacity: 0.6,
+                        fillColor: feature.properties.Name === "Resort & Villa" ? "#FF6B35" : "#20B2AA"
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    if (feature.properties && feature.properties.Name) {
+                        layer.bindPopup("<b>Penggunaan Lahan:</b><br>" + feature.properties.Name);
+                    }
+                }
+            }).addTo(map);
+
+            // Add facilities data (Toponim)
+            const facilitiesData = {
+                "type": "FeatureCollection",
+                "features": [
+                    { "type": "Feature", "properties": { "Name": "Sewa Kano", "Category": "Aktivitas" }, "geometry": { "type": "Point", "coordinates": [110.673412528000085, -6.502319970999963] }},
+                    { "type": "Feature", "properties": { "Name": "Resort Sekuro Village", "Category": "Akomodasi" }, "geometry": { "type": "Point", "coordinates": [110.674030397000081, -6.50238477299996] }},
+                    { "type": "Feature", "properties": { "Name": "Cafe & Resto", "Category": "Kuliner" }, "geometry": { "type": "Point", "coordinates": [110.672936114000038, -6.503279780999947] }},
+                    { "type": "Feature", "properties": { "Name": "Kampoeng Sekuro", "Category": "Kuliner" }, "geometry": { "type": "Point", "coordinates": [110.674664828000061, -6.502984264999952] }},
+                    { "type": "Feature", "properties": { "Name": "Toilet & Tempat Bilas", "Category": "Fasilitas" }, "geometry": { "type": "Point", "coordinates": [110.672777090000068, -6.503384211999958] }},
+                    { "type": "Feature", "properties": { "Name": "Parkir", "Category": "Fasilitas" }, "geometry": { "type": "Point", "coordinates": [110.673147681000046, -6.50290761399998] }},
+                    { "type": "Feature", "properties": { "Name": "Gazebo", "Category": "Fasilitas" }, "geometry": { "type": "Point", "coordinates": [110.672486222000089, -6.503193447999934] }}
+                ]
+            };
+
+            // Create custom icons for different categories
+            const icons = {
+                "Aktivitas": L.divIcon({
+                    html: '<i class="fas fa-ship" style="color: #20B2AA;"></i>',
+                    iconSize: [20, 20],
+                    className: 'custom-div-icon'
+                }),
+                "Akomodasi": L.divIcon({
+                    html: '<i class="fas fa-hotel" style="color: #FF6B35;"></i>',
+                    iconSize: [20, 20],
+                    className: 'custom-div-icon'
+                }),
+                "Kuliner": L.divIcon({
+                    html: '<i class="fas fa-utensils" style="color: #28a745;"></i>',
+                    iconSize: [20, 20],
+                    className: 'custom-div-icon'
+                }),
+                "Fasilitas": L.divIcon({
+                    html: '<i class="fas fa-info-circle" style="color: #6c757d;"></i>',
+                    iconSize: [20, 20],
+                    className: 'custom-div-icon'
+                })
+            };
+
+            // Add facilities markers
+            L.geoJSON(facilitiesData, {
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {
+                        icon: icons[feature.properties.Category] || icons["Fasilitas"]
+                    });
+                },
+                onEachFeature: function(feature, layer) {
+                    const popupContent = `
+                        <div style="min-width: 200px;">
+                            <h6 style="color: var(--primary-color); margin-bottom: 10px;">
+                                <i class="fas fa-map-marker-alt"></i> ${feature.properties.Name}
+                            </h6>
+                            <p style="margin: 0; font-size: 12px; color: #666;">
+                                <strong>Kategori:</strong> ${feature.properties.Category}
+                            </p>
+                        </div>
+                    `;
+                    layer.bindPopup(popupContent);
+                }
+            }).addTo(map);
+
+            // Fit map to show all features
+            if (geojsonLayer.getBounds().isValid()) {
+                map.fitBounds(geojsonLayer.getBounds(), { padding: [20, 20] });
+            }
+        }
 
         // Lazy loading for better performance
         if ('IntersectionObserver' in window) {
